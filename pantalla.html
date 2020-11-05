@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Rye&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <section id="transmitir">
+
+    </section>
+
+</body>
+
+</html>
+<style>
+    body {
+        font-family: 'Rye', ;
+    }
+
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+</style>
+
+
+<script>
+
+    const fs = require('fs')
+
+    var str = fs.readFileSync('config.json', 'utf8');
+    configuracion = JSON.parse(str);
+
+    var StateVideo = configuracion.StateVideo;
+    var FolderMystery = configuracion.FolderMystery;
+    var FolderGanador = configuracion.FolderGanador;
+
+
+    if (StateVideo) {
+        console.log('video')
+        //video
+        var element = document.getElementById('transmitir');
+        element.innerHTML =
+            `<video autoplay loop>
+            <source src="file://localhost/${FolderMystery}" type="video/mp4">
+        </video>`;
+
+    } else {
+        //img
+        var element = document.getElementById('transmitir');
+        element.innerHTML =
+            `<img src="file://localhost/${FolderMystery}" alt="">`;
+
+    }
+
+
+    console.log(StateVideo, FolderMystery, FolderGanador)
+
+
+
+</script>

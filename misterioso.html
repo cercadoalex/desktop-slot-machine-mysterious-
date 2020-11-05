@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="themes/odometer-theme-slot-machine.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <section id="transmitir">
+        <!---   <video autoplay loop>
+            <source src="videos/Fondo1.mp4" type="video/mp4">
+        </video>-->
+    </section>
+
+
+    <div class="item" id="odo0" style="display: none;">
+        <div class="itemtransfor odometer" id="odometer1">10
+        </div>
+    </div>
+
+
+
+    <div class="item" id="odo1" style="display: none;">
+        <div class="itemtransfor odometer" id="odometer2">10
+        </div>
+    </div>
+
+    <div class="item" id="odo2" style="display: none;">
+        <div class="itemtransfor odometer" id="odometer3">10
+        </div>
+    </div>
+
+
+    <div class="item" id="odo3" style="display: none;">
+        <div class="itemtransfor odometer" id="odometer4">10
+        </div>
+    </div>
+
+
+
+    <script src="util/configm.js"></script>
+    <script src="util/odometer.min.js"></script>
+    <script src="util/move.js"></script>
+    <script src="util/size.js"></script>
+    <script src="js/signalr.js"></script>
+    <script src="util/misteriosoSglr.js"></script>
+    <script>
+
+        let stateOdometer = false;
+
+        function inhabilitar() {
+            return false
+        }
+        document.oncontextmenu = inhabilitar;
+
+
+
+        noContext = document.querySelector('.item');
+
+        noContext.addEventListener('contextmenu', e => {
+            e.preventDefault();
+        });
+
+
+
+        /* document.querySelector('section').addEventListener('click', () => {
+             window.location.href = 'ganador.html';
+         })*/
+
+        document.querySelector('section').addEventListener('keydown', (e) => {
+            if (event.ctrlKey && event.keyCode == 80) {
+                window.location.href = 'ganador.html';
+            }
+            else {
+                console.log("error de tecla ctrl+P");
+            }
+
+        })
+
+
+
+    </script>
+
+</body>
+
+</html>
+
+<style>
+    @font-face {
+        font-family: "CustomFontItim";
+        src: url('./fonts/Rye-Regular.ttf')
+    }
+
+    * {
+        font-family: 'CustomFontItim', cursive;
+    }
+</style>

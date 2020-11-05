@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="themes/odometer-theme-slot-machine.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <section id="transmitirGanador">
+
+        <!--  <video id="video1" autoplay loop>
+            <source src="videos/Ganador.mp4" type="video/mp4">
+        </video>-->
+    </section>
+
+    <div class="item" id="monto">
+        <div class="itemtransfor odometer" id="ganador">S/125.81
+        </div>
+    </div>
+
+
+    <div class="item" id="maquina">
+        <div class="itemtransfor odometer" id="codmaquina">00102030
+        </div>
+    </div>
+
+
+
+    <script src="util/configg.js"></script>
+    <script src="js/signalr.js"></script>
+    <script src="util/ganadorSglr.js"></script>
+
+    <script>
+
+
+
+
+        let a = document.getElementById('ganador');
+        let ganador = sessionStorage.getItem('ganador');
+
+        a.innerHTML = `S/${ganador}`;
+
+        let acode = document.getElementById('codmaquina');
+        let maquina = sessionStorage.getItem('maquina');
+
+        acode.innerHTML = `MAQUINA:${maquina}`;
+
+
+    </script>
+</body>
+
+</html>
+
+<style>
+    @font-face {
+        font-family: "CustomFontItim";
+        src: url('./fonts/Rye-Regular.ttf')
+    }
+
+    * {
+        font-family: 'CustomFontItim', cursive;
+    }
+
+    .odometer {
+        border-radius: 0.2em;
+        background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2NjY2NjYyIvPjxzdG9wIG9mZnNldD0iMjAlIiBzdG9wLWNvbG9yPSIjZmZmZmZmIi8+PHN0b3Agb2Zmc2V0PSI4MCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNjY2NjY2MiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
+        background-size: 100%;
+        background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #1f1600), color-stop(20%, #1f1600), color-stop(80%, #1f1600), color-stop(100%, #1f1600));
+        background-image: -moz-linear-gradient(top, #1f1600 0%, #1f1600 20%, #1f1600 80%, #1f1600 100%);
+        background-image: -webkit-linear-gradient(top, #1f1600 0%, #1f1600 20%, #1f1600 80%, #1f1600 100%);
+        background-image: linear-gradient(to bottom, #1f1600 0%, #1f1600 20%, #1f1600 80%, #1f1600 100%);
+        padding: 0.1em 0.15em 0;
+        color: #fc0;
+
+    }
+</style>

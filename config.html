@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Configuration</title>
+</head>
+
+<body>
+
+    <div class="text-center">
+        <input type="text" id="ip" name="firstname" placeholder="IP ">
+
+
+        <div class="controls">
+
+            <label class="radio">
+                <input type="radio" name="folder" value="1" checked>
+                Video
+            </label>
+
+            <label class="radio">
+                <input type="radio" name="folder" value="0">
+                Imagen
+            </label>
+
+
+        </div>
+
+        <label for="myFileMistery">Seleccione Archivo Misterioso...</label>
+        <input type="file" name="photo" id="myFileMistery" />
+
+        <br>
+        <hr>
+        <br>
+        <label for="myFileGanador">Seleccione Archivo Ganador...</label>
+        <input type="file" name="photo" id="myFileGanador" />
+        <br>
+        <br>
+
+
+        <span id="mensaje" style="color: greenyellow;"></span>
+
+        <input onclick="SaveIP();" type="button" value="Guardar">
+    </div>
+
+
+
+
+
+</body>
+
+</html>
+<style>
+    label {
+        cursor: pointer;
+        /* Style as you please, it will become the visible UI component. */
+    }
+
+    #myFileMistery,
+    #myFileGanador {
+        opacity: 0;
+        position: absolute;
+        z-index: -1;
+    }
+
+
+    .controls {
+        display: flex;
+    }
+
+    .radio {
+        flex: 1 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+
+    input[type=text],
+    select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type=button] {
+        width: 100%;
+        background-color: #172b4d;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type=button]:hover {
+        background-color: #203a67;
+    }
+
+    div {
+        border-radius: 5px;
+        background-color: #E5EDF0;
+        padding: 25px;
+        text-align: center;
+    }
+</style>
+
+<script>
+    const fs = require('fs')
+
+    /* var str = fs.readFileSync('config.json', 'utf8');
+     configuracion = JSON.parse(str);
+ 
+     var IP = configuracion.IP;*/
+
+
+    //  console.log('jsON', IP);
+
+
+    function SaveIP() {
+        let StateVideo = true;
+
+        let obj = document.getElementById('ip').value;
+        let FileMistery = document.getElementById('myFileMistery').files[0].path;
+        let FileGanador = document.getElementById('myFileGanador').files[0].path;
+
+        FileMistery = FileMistery.substr(3);
+        FileGanador = FileGanador.substr(3);
+
+
+        var ele = document.getElementsByName('folder');
+
+        for (i = 0; i < ele.length; i++) {
+            if (ele[i].checked) {
+                StateVideo = ele[i].value == 1 ? true : false;
+            }
+
+
+        }
+
+        console.log(StateVideo);
+
+
+
+
+
+        if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
+            .test(obj)) {
+            // configuracion.IP = obj;
+
+            var configuracion = {
+
+                "IP": `${obj}`,
+                "StateVideo": StateVideo,
+                "FolderMystery": `${FileMistery}`,
+                "FolderGanador": `${FileGanador}`,
+                "Coordenadas": [{
+                    "key": 0,
+                    "Size": "2",
+                    "X": 874.390625,
+                    "Y": 315
+                }, {
+                    "key": 1,
+                    "Size": "3.5",
+                    "X": 451.390625,
+                    "Y": 287.5
+                }, {
+                    "key": 2,
+                    "Size": "3",
+                    "X": 747.390625,
+                    "Y": 123
+                }, {
+                    "key": 3,
+                    "Size": "3",
+                    "X": 368.59375,
+                    "Y": 141.5
+                }, {
+                    "key": 4,
+                    "Size": "9",
+                    "X": 370.390625,
+                    "Y": 141
+                },
+                {
+                    "key": 5,
+                    "Size": "9",
+                    "X": 370.390625,
+                    "Y": 141
+                }]
+
+            };
+
+
+
+            fs.writeFile("config.json", JSON.stringify(configuracion), function (err) {
+                if (err) console.log('error', err);
+            });
+
+            document.getElementById('mensaje').innerText = "Guardado";
+
+            return (true)
+
+        }
+        document.getElementById('mensaje').style.color = 'red';
+
+        document.getElementById('mensaje').innerText = "IP Incorrecto";
+
+        return (false)
+
+    }
+</script>
